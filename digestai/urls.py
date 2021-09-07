@@ -4,6 +4,10 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 from . import views
+from . import auth
+
+from django.views.decorators.csrf import csrf_exempt
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -28,6 +32,7 @@ urlpatterns = [
     #path('account/', views.account, name='account'),
     #path('studyset/', views.studyset, name='studyset'),
     #path('info/', views.info, name='info'),
+    path('test-signup/', csrf_exempt(auth.user_signup)),
 
     path('api/studysets', views.studyset_list), # GET, POST, DELETE
     path('api/studysets/<pk>', views.studyset_details), # GET, PUT, DELETE

@@ -1,13 +1,12 @@
 
 from django.http import HttpResponse
-
 from django.shortcuts import render
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 
-from digestai.models import StudySet
+from digestai.models import StudySet, User
 from digestai.serializers import StudySetSerializer
 from rest_framework.decorators import api_view
 
@@ -17,21 +16,32 @@ from magic_admin.utils.http import parse_authorization_header_value
 from magic_admin.error import DIDTokenError
 from magic_admin.error import RequestError
 
+from django.core.cache import cache
+
 
 # API views
 @api_view(['GET', 'POST', 'DELETE'])
 def studyset_list(request):
     # GET list of studysets, post a new studyset, delete all studysets
     if request.method == 'GET':
-        studysets = StudySet.objects.all()
-        title = request.GET.get('title', None)
-        if title is not None:
-            studysets = StudySet.filter(title_icontains=title)
+        # Get email from auth token
+        # email = 'prof.chakas@gmail.com'
+        email = 'chansa.k@turing.com'
+        try:
+            user = User.objects.filter(email=email)[0]
+        except:
+            return JsonResponse({'message': f'user for {email} not found!'}, status=status.HTTP_204_NO_CONTENT)
+        
+        studysets = cache.get(user.email, 'expired')
+        if studysets == 'expired':
+            studysets = StudySet.objects.filter(username=user.username)
+            cache.set(user.email, studysets, timeout=60)
 
         studysets_serializer = StudySetSerializer(studysets, many=True)
         return JsonResponse(studysets_serializer.data, safe=False)
     elif request.method == 'POST':
         studyset_data = JSONParser().parse(request)
+        print(type(studyset_data), studyset_data)
         # generate quiz and flashcards
         studyset_serializer = StudySetSerializer(data=studyset_data)
         if studyset_serializer.is_valid():
@@ -87,9 +97,7 @@ def register(request):
         # You can also remap this error to your own application error.
         return HttpError(str(e))
 
-    return HttpResponse(user_meta)
-
-    # user_data = JSONParser().parse(request)
+    #user_data = JSONParser().parse(request)
 
     #if user_meta.data['email'] != user_data['email']:
     #    return UnAuthorizedError('UnAuthorized user signup')
@@ -100,6 +108,8 @@ def register(request):
     #    return JsonResponse(user_serializer.data, status=status.HTTP_201_CREATED)
     
     #return JsonResponse(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    return HttpResponse(user_meta)
 
 
 @api_view(['GET', 'POST'])
@@ -139,33 +149,3 @@ def evaluate_quiz(request):
     elif request.method == 'POST':
         return JsonResponse()
     return JsonResponse()
-
-
-"""
-def signup(request):
-    return HttpResponse("signup page")
-
-def library(request):
-    return HttpResponse("library page")
-
-def activity(request):
-    return HttpResponse("activity page")
-
-def account(request):
-    return HttpResponse("account page")
-
-def studyset(request):
-    return HttpResponse("Study Set page")
-
-def info(request):
-    return HttpResponse("Info page")
-
-def index(request):
-    return HttpResponse("Hello, world. You're welcome to DigestAI.")
-
-def create_summary(request):
-    return HttpResponse("Create new summary!")
-
-def login(request):
-    return HttpResponse("Login page")
-"""

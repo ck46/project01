@@ -34,7 +34,7 @@ class StudySet(models.Model):
     username = models.CharField(max_length=100)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=100)
-    summary = models.CharField(max_length=500, default='')
+    summary = models.CharField(max_length=2000, default='')
     quiz = models.ArrayField(model_container=MultipleChoiceQuestion, default=None)
     flashcards = models.ArrayField(model_container=FlashCard, default=None)
 
