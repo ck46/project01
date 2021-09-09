@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %} Homepage {% endblock%}
+{% load static %}
+{% block content %}
+    <!-- main content -->
+    <main class="main-content-landing grey-blob">
+      <!-- hero section -->
+      <section>
+        <!-- hero background image -->
+        <div class="container">
+          <div class="row hero-wrapper">
+            <div class="hero-header-wrapper-landing">
+              <h1 class="mb-4">
+                the world's<br>
+                first AI learning platform.
+              </h1>
+            </div>
+            <!-- new tech image -->
+            <div class="hero-img-wrapper">
+              <img class="img-fluid hero-img" src="{% static 'artificial_intelligence.8fb78561.svg' %}" alt="..." height="615" width="477">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end hero section -->
+
+      <!-- summary section -->
+      <section>
+        <div class="container">
+          <div class="summary-section-landing mb-3">
+            <div class="row summary-header-landing">
+              <h2 class="mt-4 mb-1">
+                summarize text & turn that into a study set
+              </h2>
+            </div>
+            <div class="summary-wrapper">
+              <!-- summary column -->
+              <div class="col-md summary-col-1 ml-5">
+                <h5>
+                  drag your jpeg or<br>
+                  png here
+                </h5>
+                <span class="text-muted mt-3 mb-4">or</span>
+                <!-- paste text button -->
+                <button type="button" class="btn btn-secondary">
+                  paste text
+                </button>
+                <span class="upload-prompt"><img src="{% static 'upload_icon.a4e2604b.svg' %}" alt=""> select a file
+                  from your computer</span>
+              </div>
+              <!-- summary copy -->
+              <div class="col-md summary-col-2">
+                <h5>Give it a try!</h5>
+                <p>
+                  Our learning platform allows you to summarize your academic
+                  materials for less reading time!
+                </p>
+                <p>
+                  From the text you upload, our AI creates a Study Set complete
+                  with the Summary plus Flashcards and a Quiz for you to study
+                  with. We do that by using an image a book, an academic journal
+                  pdf or anything really, and our engines do the rest!
+                </p>
+                <p>Upload a file to see for yourself.</p>
+                <span class="skip-summary mt-4">Feel free to skip the summary and
+                  <a href="{% url 'signup' %}">SIGN UP</a> now. :)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end summary section -->
+
+      <!-- character data section -->
+      <section>
+        <div class="character-data-section">
+          <h2>number of characters summarized</h2>
+          <span class="character-number">2,323,459</span>
+          <p class="text-muted">and counting!</p>
+          <img src="{% static 'graph.da4300b5.svg' %}" alt="">
+        </div>
+      </section>
+
+      <!-- testimonial section -->
+      <section class="testimonial-wrapper">
+        <div class="container">
+          <div class="row testimonial-row">
+            <div class="testimonial-header">
+              <h2 class="mb-4">what students are saying!</h2>
+              <span class="testimonial-copy">
+                "Digest's summarize tool is really helpful. It saves me from
+                re-reading material, which saves me a lot of time when I'm in a
+                rush."
+              </span>
+              <span class="testimonial-author mt-2">-Zara, Imperial College London</span>
+              <div class="row testimonial-nav">
+                <span class="nav-item active-green"></span>
+                <span class="nav-item"></span>
+                <span class="nav-item"></span>
+              </div>
+              <!-- get started button -->
+              <button type="button" class="btn btn-secondary mt-5">
+                get started now
+              </button>
+            </div>
+            <!-- tech image -->
+            <div class="testimonial-img-wrapper">
+              <img class="img-fluid testimonial-img" src="{% static 'chatbot_1.ca95687d.svg' %}">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end main container -->
+    </main>
+
+{% endblock %}

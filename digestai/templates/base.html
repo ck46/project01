@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DigestAI - {% block title %}{% endblock %}</title>
+
+    <!-- bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- styles -->
+    <link href="{% static  'main.77bb5cfd.css' %}" rel="stylesheet">
+  <script src="/main.77bb5cfd.js"></script><script src="static/registered.js"></script></head>
+
+  <body>
+    <header>
+      <!-- fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a id="openSideNav" class="navbar-brand digest-logo" onclick="openNav()"><img src="{% static 'digest.ai.cdb59dd2.png' %}" alt="..." height="32" width="139"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'summarize' %}">summarize</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'info' %}">info</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav user-login">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account' %}">hi, sammy!</a>
+            </li>
+            <img class="navbar-avatar" src="{% static 'sammy_navbar.fece2245.png' %}" width="39" height="39" alt="">
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- side menu **delete for delivery** -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" id="closeSideNav" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="static/index.html">landing-page</a>
+      <a href="static/registered.html">reg-summary-created</a>
+      <a href="static/summarization-step1.html">summarization-step-1</a>
+      <a href="static/non-reg-summary-created.html">non-reg-summary-created</a>
+      <a href="static/study-set-summary.html">study-set-summary</a>
+      <a href="static/study-set-flashcards.html">study-set-flashcards</a>
+      <a href="static/study-set-quiz.html">study-set-quiz</a>
+      <a href="static/account-library.html">account-library</a>
+    </div>
+    <!-- end side menu -->
+    
+    <!-- main content -->
+    {% block content %}{% endblock %}
+
+    <!-- fixed footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <!-- info -->
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            <ul class="info">
+              <span>Info</span>
+              <li>
+                <a href="#">about us</a>
+              </li>
+              <li>
+                <a href="#">how it works</a>
+              </li>
+              <li>
+                <a href="#">features</a>
+              </li>
+            </ul>
+          </div>
+          <!-- legal -->
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <ul class="legal">
+              <span>Legal</span>
+              <li>
+                <a href="#">terms</a>
+              </li>
+              <li>
+                <a href="#">privacy</a>
+              </li>
+            </ul>
+          </div>
+          <!-- contact -->
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            <ul class="contact">
+              <span>Contact</span>
+              <li>
+                <a href="#">info@digest.ai</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- footer svg -->
+      <img class="img-fluid footer-img" src="{% static 'footer.8f2866fe.svg' %}">
+      <!-- Copyright -->
+      <div class="text-left p-4 copyright">&copy digest.ai 2021</div>
+    </footer>
+
+    <!-- side-menu script ***remove before delivery*** -->
+    <script src="{% static 'app.c328ef1a.js' %}"></script>
+    <!-- end side-menu script -->
+  </body>
+</html>
