@@ -24,6 +24,9 @@ Then run the application using:
 $python manage.py runserver
 ```
 
+## Frontend
+The frontend pages are currently in the digestai/templates folder and digestai/static folder for the static files.
+
 ### API documentation
 Once the server is running using the command above, the api documentation can be found here `http://localhost:8000/docs`
 
